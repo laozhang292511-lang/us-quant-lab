@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 from quant_lab.backtest import run_trend_momentum
+from quant_lab.data import _parse_twelve_data
 
 
 def _config():
@@ -39,3 +40,16 @@ def test_future_price_change_does_not_change_prior_weights():
     changed.iloc[-1] *= 10
     rerun = run_trend_momentum(changed, _config()).weights
     pd.testing.assert_frame_equal(original.iloc[:-1], rerun.iloc[:-1])
+
+
+def test_parse_twelve_data_orders_dates_and_prices():
+    payload = {
+        "status": "ok",
+        "values": [
+            {"datetime": "2024-01-03", "close": "102.50"},
+            {"datetime": "2024-01-02", "close": "100.00"},
+        ],
+    }
+    series = _parse_twelve_data(payload, "SPY")
+    assert list(series.index) == [pd.Timestamp("2024-01-02"), pd.Timestamp("2024-01-03")]
+    assert list(series) == [100.0, 102.5]
