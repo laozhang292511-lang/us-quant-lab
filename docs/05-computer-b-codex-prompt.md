@@ -18,9 +18,9 @@
    - allow_broker_credentials: false
    - schwab_live: false
    - mode: backtest
-4. 使用锁定的 Python 3.11 和独立环境安装 core、Vibe-Trading、AgentQuant、Lumibot；所有缓存重定向到安装目录。
+4. 不要自行猜测安装命令。运行 `scripts/Setup-Computer.ps1 -Profile ComputerB -ConfirmUnitPolicy`，由母版安装锁定的 Python 3.11 和独立环境；所有缓存留在安装目录。
 5. 不创建 .env 中的任何券商字段，不导入账户数据，不开启公网监听。网页服务只能绑定 127.0.0.1。
-6. 运行 scripts/Test-All.ps1；只有全部通过才报告完成。
+6. 安装器结束后再次运行 `scripts/Test-All.ps1` 与 `scripts/Export-EnvironmentFingerprint.ps1 -Verify`；只有全部通过才报告完成。
 7. 检查 Git 同步内容不含密钥、令牌、data、runtime、envs、.tools、vendor 或私人报告。
 8. 最终告诉我：安装位置、版本、空间占用、测试结果、未完成项和日常一键入口。
 
@@ -32,3 +32,4 @@
 - 先在电脑 A 创建 GitHub 私有仓库并推送母版。
 - 电脑 B 只使用细粒度、最小权限的 GitHub 授权；优先使用系统凭据管理器，不把令牌写入文件。
 - 若单位制度不允许个人代码、金融数据、代理软件或开发环境，停止部署并遵守单位制度。
+- 具体点击、命令、验收与故障处理见 `docs/07-computer-b-step-by-step.md`。

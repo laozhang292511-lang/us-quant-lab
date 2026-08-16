@@ -12,20 +12,25 @@
 - 9 个项目级交易研究/风控技能
 - A/B 多电脑安全配置、实盘安全门和一键入口
 - 母版核心测试与 AgentQuant 63 项测试
+- Twelve Data 行情接入与 Windows DPAPI 加密密钥
+- 首次真实 ETF 历史回测与可复现离线复测
+- 新电脑一键安装器、环境指纹和脱敏报告共享目录
+- 私有 GitHub 最新母版同步
 
 ## 尚未完成
 
-- 第一次真实 ETF 历史回测：Yahoo 被限流，Stooq 触发浏览器验证；未使用不完整数据
 - Vibe-Trading 的 LLM 登录：需用户选择 OAuth/模型后操作
-- GitHub 私有仓库已连接并完成首次推送：`laozhang292511-lang/us-quant-lab`
-- 首次提交：`956472b`；本项目使用 GitHub 隐私邮箱，不修改全局 Git 身份
 - Windows 管理员安全检查：Defender、防火墙、BitLocker、更新和内存信息
 - Schwab Developer Portal 应用：留到模拟交易稳定后，不应现在填写凭据
 - Docker/WSL：首阶段原生 Windows 已可运行，暂不增加复杂度
+- 稳健性验证包与每日模拟交易：下一阶段实施
 
 ## 当前可运行
 
 - `scripts\Test-All.ps1`：全套离线验收
 - `scripts\Start-Vibe.ps1`：本机 Vibe-Trading 网页界面
 - `scripts\Start-AgentQuant.ps1`：本机 AgentQuant 仪表板
-- `scripts\Run-Backtest.ps1`：下载行情并运行首个策略；免费数据源受限时会安全停止
+- `scripts\Run-Backtest.ps1`：下载行情并运行首个策略，也支持 `-Offline`
+- `scripts\Setup-Computer.ps1`：在新电脑重建锁定环境
+- `scripts\Export-EnvironmentFingerprint.ps1`：生成并验证环境指纹
+- `scripts\Export-SharedReport.ps1`：只导出允许 Git 同步的脱敏报告

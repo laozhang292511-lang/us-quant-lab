@@ -1,10 +1,21 @@
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
+$Utf8 = New-Object Text.UTF8Encoding($false)
+[Console]::InputEncoding = $Utf8
+[Console]::OutputEncoding = $Utf8
+$OutputEncoding = $Utf8
+$env:PYTHONUTF8 = "1"
 $Failures = 0
+$RunId = "{0}-{1}" -f ([DateTime]::UtcNow.ToString("yyyyMMddHHmmss")), $PID
+$TestRoot = Join-Path $ProjectRoot "runtime\test-temp\$RunId"
+$CoreTemp = Join-Path $TestRoot "core"
+$AgentTemp = Join-Path $TestRoot "agentquant"
+New-Item -ItemType Directory -Force -Path $CoreTemp, $AgentTemp | Out-Null
+$env:RUFF_CACHE_DIR = Join-Path $TestRoot "ruff-cache"
 
 Write-Host "[1/4] 母版核心测试"
 $env:PYTHONPATH = Join-Path $ProjectRoot "src"
 Push-Location $ProjectRoot
-& (Join-Path $ProjectRoot "envs\core\Scripts\python.exe") -m pytest -q
+& (Join-Path $ProjectRoot "envs\core\Scripts\python.exe") -m pytest -q -p no:cacheprovider --basetemp $CoreTemp
 if ($LASTEXITCODE -ne 0) { $Failures++ }
 & (Join-Path $ProjectRoot "envs\core\Scripts\python.exe") -m ruff check src tests
 if ($LASTEXITCODE -ne 0) { $Failures++ }
@@ -23,7 +34,7 @@ Write-Host "[4/4] AgentQuant 测试"
 $AgentRoot = Join-Path $ProjectRoot "vendor\AgentQuant"
 $env:PYTHONPATH = $AgentRoot
 Push-Location $AgentRoot
-& (Join-Path $ProjectRoot "envs\agentquant\Scripts\python.exe") -m pytest -q
+& (Join-Path $ProjectRoot "envs\agentquant\Scripts\python.exe") -m pytest -q -p no:cacheprovider --basetemp $AgentTemp
 if ($LASTEXITCODE -ne 0) { $Failures++ }
 Pop-Location
 

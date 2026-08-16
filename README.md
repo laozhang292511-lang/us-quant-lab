@@ -10,7 +10,7 @@
 - 独立验证：AgentQuant
 - 确定性回测与未来执行：本工程 + Lumibot
 - 实盘券商：Charles Schwab（当前禁用，未配置任何凭据）
-- 数据：首阶段使用无需密钥的 Yahoo Finance，并以 Stooq 备用；正式实盘前必须评估付费数据源
+- 数据：首选 Twelve Data（本机 DPAPI 加密密钥），Yahoo Finance 与 Stooq 作为无密钥备用
 
 ## 安全原则
 
@@ -39,3 +39,19 @@ vendor/       外部开源项目源码（不进入本仓库）
 环境安装完成后，日常操作通过 `scripts` 目录中的 PowerShell 入口完成，不要求每次打开 Codex。Codex主要用于搭建、修改策略、排障和解释报告。
 
 详细状态见 [电脑 A 预检报告](docs/00-computer-a-preflight.md) 与 [实施路线](docs/01-implementation-roadmap.md)。
+
+## 新电脑部署
+
+仓库克隆到获准的非系统盘后，电脑 A/C 等个人研究机运行：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Setup-Computer.ps1 -Profile ComputerA
+```
+
+单位电脑 B 必须先确认单位制度允许，再运行受限配置：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Setup-Computer.ps1 -Profile ComputerB -ConfirmUnitPolicy
+```
+
+电脑 B 的逐步操作见 [电脑 B 部署手册](docs/07-computer-b-step-by-step.md)。

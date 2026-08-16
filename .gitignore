@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+config/local.yaml
 *.pem
 *.key
 *token*.json
@@ -31,6 +32,7 @@ reports/**/*.json
 reports/**/*.png
 reports/**/*.md
 !reports/.gitkeep
+!reports/shared/**
 
 # IDE / OS
 .idea/
