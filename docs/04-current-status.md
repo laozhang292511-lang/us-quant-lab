@@ -17,8 +17,8 @@
 
 - 第一次真实 ETF 历史回测：Yahoo 被限流，Stooq 触发浏览器验证；未使用不完整数据
 - Vibe-Trading 的 LLM 登录：需用户选择 OAuth/模型后操作
-- GitHub 私有仓库创建与两机同步：需用户决定仓库名并登录 GitHub
-- 本地 Git 仓库已初始化；尚未提交，因为本机没有配置 Git 提交姓名/邮箱
+- GitHub 私有仓库已连接并完成首次推送：`laozhang292511-lang/us-quant-lab`
+- 首次提交：`956472b`；本项目使用 GitHub 隐私邮箱，不修改全局 Git 身份
 - Windows 管理员安全检查：Defender、防火墙、BitLocker、更新和内存信息
 - Schwab Developer Portal 应用：留到模拟交易稳定后，不应现在填写凭据
 - Docker/WSL：首阶段原生 Windows 已可运行，暂不增加复杂度

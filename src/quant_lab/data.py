@@ -39,7 +39,12 @@ def download_adjusted_prices(
         threads=True,
     )
     if frame.empty:
-        close = _download_stooq(symbols, start, end)
+        try:
+            close = _download_stooq(symbols, start, end)
+        except Exception as exc:
+            raise RuntimeError(
+                "Yahoo Finance 当前限流，Stooq 也未能返回公开 CSV；没有生成回测。"
+            ) from exc
     else:
         close = frame["Close"] if isinstance(frame.columns, pd.MultiIndex) else frame[["Close"]]
         if not isinstance(close, pd.DataFrame):

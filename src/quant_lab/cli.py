@@ -20,10 +20,13 @@ def main() -> None:
     root = Path.cwd()
     config = load_config(root / args.config)
     cache = root / "data" / "market" / "etf-daily-adjusted.csv"
-    if args.offline:
-        prices = load_cached_prices(cache)
-    else:
-        prices = download_adjusted_prices(config["universe"], args.start, args.end, cache)
+    try:
+        if args.offline:
+            prices = load_cached_prices(cache)
+        else:
+            prices = download_adjusted_prices(config["universe"], args.start, args.end, cache)
+    except (RuntimeError, FileNotFoundError) as exc:
+        parser.exit(2, f"回测未运行：{exc}\n")
     result = run_trend_momentum(prices, config)
     report_path = write_report(result, root / "reports" / "backtests")
     print(f"回测完成: {report_path}")
