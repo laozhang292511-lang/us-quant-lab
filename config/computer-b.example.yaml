@@ -1,0 +1,25 @@
+schema_version: 1
+profile: computer-b-restricted
+install_root: "CHOOSE_DURING_INSTALL"
+python_version: "3.11"
+timezone: "America/New_York"
+display_timezone: "Asia/Shanghai"
+mode: backtest
+
+components:
+  vibe_trading: true
+  agentquant: true
+  lumibot: true
+  schwab_live: false
+
+storage:
+  data_dir: "data"
+  report_dir: "reports"
+  runtime_dir: "runtime"
+  vendor_dir: "vendor"
+
+security:
+  allow_broker_credentials: false
+  require_single_executor_lock: true
+  sync_private_account_data: false
+  sync_secrets: false

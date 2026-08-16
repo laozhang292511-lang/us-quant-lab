@@ -1,0 +1,40 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*token*.json
+*credentials*.json
+
+# Python
+.venv/
+**/.venv/
+envs/
+.tools/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Local market/account data
+data/**
+!data/.gitkeep
+runtime/**
+!runtime/.gitkeep
+vendor/**
+!vendor/.gitkeep
+reports/private/**
+reports/**/*.html
+reports/**/*.csv
+reports/**/*.json
+reports/**/*.png
+reports/**/*.md
+!reports/.gitkeep
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

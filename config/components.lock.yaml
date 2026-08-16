@@ -1,0 +1,28 @@
+schema_version: 1
+created_at: "2026-08-16"
+python: "3.11.13"
+uv: "0.8.12"
+components:
+  vibe_trading:
+    package: vibe-trading-ai
+    version: "0.1.13"
+  lumibot:
+    package: lumibot
+    version: "4.5.83"
+    schwab_adapter: true
+  agentquant:
+    package_version: "0.2.0"
+    repository: "https://github.com/OnePunchMonk/AgentQuant"
+    commit: "8275a8e5331bd63b5a7bcb26e9704ecca85c2bc2"
+  trading_skills:
+    repository: "https://github.com/agiprolabs/claude-trading-skills"
+    selected:
+      - strategy-framework
+      - walk-forward-validation
+      - portfolio-analytics
+      - position-sizing
+      - risk-management
+      - correlation-analysis
+      - ohlcv-processing
+      - trade-journal
+      - slippage-modeling
