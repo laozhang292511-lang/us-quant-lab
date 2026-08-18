@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [ValidateSet("Dashboard", "Research")]
     [string]$Mode = "Dashboard",

@@ -1,4 +1,4 @@
-$ProjectRoot = Split-Path -Parent $PSScriptRoot
+﻿$ProjectRoot = Split-Path -Parent $PSScriptRoot
 $Utf8 = New-Object Text.UTF8Encoding($false)
 [Console]::InputEncoding = $Utf8
 [Console]::OutputEncoding = $Utf8

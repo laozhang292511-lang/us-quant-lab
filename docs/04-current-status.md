@@ -16,6 +16,7 @@
 - 首次真实 ETF 历史回测与可复现离线复测
 - 新电脑一键安装器、环境指纹和脱敏报告共享目录
 - 私有 GitHub 最新母版同步
+- 全部 PowerShell 入口统一为 UTF-8 BOM，并加入 Windows PowerShell 5.1 自动兼容性预检
 
 ## 尚未完成
 

@@ -1,4 +1,4 @@
-$ProjectRoot = Split-Path -Parent $PSScriptRoot
+﻿$ProjectRoot = Split-Path -Parent $PSScriptRoot
 $Utf8 = New-Object Text.UTF8Encoding($false)
 [Console]::InputEncoding = $Utf8
 [Console]::OutputEncoding = $Utf8
@@ -11,6 +11,11 @@ $CoreTemp = Join-Path $TestRoot "core"
 $AgentTemp = Join-Path $TestRoot "agentquant"
 New-Item -ItemType Directory -Force -Path $CoreTemp, $AgentTemp | Out-Null
 $env:RUFF_CACHE_DIR = Join-Path $TestRoot "ruff-cache"
+
+Write-Host "[预检] Windows PowerShell 5.1 脚本兼容性"
+$WindowsPowerShell = Join-Path $env:SystemRoot "System32\WindowsPowerShell\v1.0\powershell.exe"
+& $WindowsPowerShell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "Test-PowerShell5Compatibility.ps1")
+if ($LASTEXITCODE -ne 0) { $Failures++ }
 
 Write-Host "[1/4] 母版核心测试"
 $env:PYTHONPATH = Join-Path $ProjectRoot "src"
@@ -27,7 +32,7 @@ if ($LASTEXITCODE -ne 0) { $Failures++ }
 
 Write-Host "[3/4] Lumibot 与 Schwab 适配器"
 $env:LUMIBOT_CACHE_FOLDER = Join-Path $ProjectRoot "data\lumibot-cache"
-& (Join-Path $ProjectRoot "envs\lumibot\Scripts\python.exe") -c "import lumibot; from lumibot.brokers import Schwab; print(lumibot.__version__)"
+& (Join-Path $ProjectRoot "envs\lumibot\Scripts\python.exe") (Join-Path $PSScriptRoot "Test-LumibotImport.py")
 if ($LASTEXITCODE -ne 0) { $Failures++ }
 
 Write-Host "[4/4] AgentQuant 测试"

@@ -95,15 +95,16 @@ Codex 会先检查环境，再请求你批准联网下载。允许前确认命�
 
 必须同时满足：
 
-1. 核心测试显示 6 项通过；
-2. AgentQuant 显示 63 项通过；
-3. Vibe-Trading 显示 0.1.13；
-4. Lumibot 显示 4.5.83；
-5. `runtime/environment-fingerprint.json` 中：
+1. Windows PowerShell 5.1 兼容性预检通过；
+2. 核心测试显示 6 项通过；
+3. AgentQuant 显示 63 项通过；
+4. Vibe-Trading 显示 0.1.13；
+5. Lumibot 显示 4.5.83；
+6. `runtime/environment-fingerprint.json` 中：
    - `profile` 是 `computer-b-restricted`；
    - `verification_passed` 是 `true`；
    - `failures` 是空列表；
-6. Codex确认没有把密钥、`data`、`runtime`、`envs`、`.tools`、`vendor` 提交到 Git。
+7. Codex确认没有把密钥、`data`、`runtime`、`envs`、`.tools`、`vendor` 提交到 Git。
 
 把最终验收结果或截图发回电脑 A 的这个任务复核。测试失败不代表可以“先用起来”，必须先解决。
 

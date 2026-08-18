@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [ValidateSet("ComputerA", "ComputerB")]
     [string]$Profile = "ComputerB",
